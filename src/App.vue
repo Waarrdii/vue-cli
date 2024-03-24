@@ -1,18 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="container-fluid">
+      <product-list :products="products"></product-list>
+    </div>
+    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import productList from './components/product-list.vue';
+import axios from 'axios';
 
 export default {
   name: 'App',
+  data : function(){
+    return{
+      products : []
+    }
+  },
   components: {
-    HelloWorld
-  }
+    productList
+  },
+  mounted() {
+        // Fetch data produk dari WooCommerce API
+        axios.get(`https://fakestoreapi.com/products`)
+          .then(response => {
+            // Simpan data produk dalam state
+            this.products = response.data
+            // console.log(this.products)
+          })
+      },
 }
 </script>
 
@@ -25,4 +42,4 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-</style>
+</style>./components/product-list.vue
