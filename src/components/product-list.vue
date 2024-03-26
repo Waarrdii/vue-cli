@@ -8,7 +8,10 @@
                 <price :value="Number(item.price)"></price>
               </h5>
             </a>
-            
+            <button type="button" class="btn btn-success mb-sm-2" @click="$emit('addCart',item)">
+              <span class="material-symbols-outlined" style="vertical-align: middle;"></span>
+              <span style="vertical-align: middle;">Buy</span>
+            </button>
           </div>
         </div>
 </template>
@@ -20,6 +23,7 @@ export default{
     components : {
         price
     },
+    
     props: ['products'] 
 }
 </script>
